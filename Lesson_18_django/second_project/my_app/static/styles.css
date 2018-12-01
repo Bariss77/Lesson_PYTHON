@@ -1,0 +1,12 @@
+.my-label {
+    color: green;
+}
+
+.message {
+    list-style: none;
+}
+
+.message .error {
+    background-color: red;
+    padding: 10px;
+}

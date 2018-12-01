@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JQuery</title>
+</head>
+
+<body>
+<!-- Скачиваем и устанавливаем библиотеку скрипт jQuery, там имеется глоб.переменная jQuery -->
+<script type="application/javascript" src="https://unpkg.com/jquery@3.2.0"></script>
+<!-- Открываем наш скрипт: -->
+<script type="application/javascript">
+  'use strike';
+
+  (function (window, document, $) {  // Добавляется глобалный объект JQuery - $
+    $(document).ready(function() {   // Функция начинает работать когда все загружено callback
+      var content = $('#info');  // Селектор, находим и передаем объект в document
+      content.text('content text');  // метод .text ??????
+
+      var button = $('<button>').addClass('content-button').text('Press me!'); // добавляем класс кнопку
+
+      button.click(function() {    // функция по событию
+        content.css('background', 'red'); // меняем style объекта
+        console.log(content, button);  // выводим в браузер
+      });
+      content.append(button);  // добавляем различные объекты
+    });
+  })(window, document, JQuery); // вызов функции 'function (window, document, $)'
+</script>
+
+</body>
+</html>

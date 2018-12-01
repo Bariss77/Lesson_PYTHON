@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JQuery</title>
+</head>
+
+<style>
+ .success {
+   background-color: : green;}
+  .failed {
+    background-color: red;}
+</style>
+
+<body>
+
+<div class="request">
+  <ul class="results"></ul>
+  <button id="make-request">Request</button>
+</div>
+
+<!-- Скачиваем и устанавливаем библиотеку скрипт jQuery, там имеется глоб.переменная jQuery -->
+<script type="application/javascript" src="https://unpkg.com/jquery@3.2.0"></script>
+<!-- Открываем наш скрипт: -->
+<script type="application/javascript">
+  'use strike';
+// Выбираем и изменяем DOM элементы в HTML:
+(function (window, document) {
+  function colorizeText()    {
+    var colors = [                // список цветов
+      'red',
+      'grey',
+      'black',
+      'blue',
+      'orange'
+    ];
+    var color = colors[            // выбор случайного цвета из списка
+      Math.floor(Math.random() * colors.length)   // Math.random - случайное число от 0 до 1, при умножении на длину списка цветов
+    ];                                            // получаем сл. число от 0 до 5. Math.floor - отбрасываем дробную часть, округляем до меньшего целого
+
+    var texts = document.querySelector('.texts');  // Выбор по CSS селектору элементов id, class, названию и др.
+    texts.style['background-color'] = color;     // Пердаем новое значение style background
+
+  }
+
+function setStatus(status) {   // передаем в функцию 0 или 1 случайное число
+  var statusAlert = document.getElementById('status');  // находим элемент с id status. Это div с двумя атрибутами
+  var successColor = statusAlert.getAttribute('data-success-color'); // получаем значение данного атрибута. Ели его нет то undefound
+  var failureColor = statusAlert.getAttribute('data-failure-color'); // получаем значение данного атрибута. Ели его нет то undefound
+
+  var textStatus = status ? 'Success' : 'Failure'; // если случайно 0, то Failure, если 1, то Success
+
+  var element = document.createElement('p');  // создаем новый элемент в данном случае <p> абзац
+
+  element.style.backgroundColor = status ? successColor : failureColor; // если 1, то задаем в новый элемент style background successColor, если 0, то failureColor
+  element.innerText = textStatus;  // задаем текст нового элемента
+  statusAlert.appendChild(element); // добавляем вновь созданый элемент??????
+}
+
+document.addEventListener('DOMContentLoaded', function() { // Точка входа(событие), код начинает выполняться когда загружены и исполнено весь: HTML, CSS, JS - DOMContentLoaded
+  var control = document.getElementById('toggle');    // СЕЛЕКТОР: выбирает элемент с заданым id это в данном случае кнопка
+  // control.onclick = function (event) {             // document - глобальный объект - сама HTML страница,
+  // console.log(event);                              // метод getElementById - выбор элементов по атрибуту id
+  // colorizeTexts();                                 // метод getElementByClassName - выбор элементов по атрибуту class
+  // setStatus(Math.round(Math.random()));
+  // };
+
+  // or:
+  control.addEventListener('click', function(event) {    // По событию - нажатие кнопки click происходит callback выполняется ожидающая функция
+    console.log(this, event);     // выводим что случилось?????
+    colorizeTexts();              //  выполняем функцию
+    setStatus(Math.round(Math.random()));  // Возвращаем 0 или 1, Math.round - округляем до целого
+  });
+  // control.addEventListener('click', function(event) {
+  //    collectStatistics();
+  //});
+});
+})(window, document);
+})
+
+</script>
+
+</body>
+</html>
